@@ -2,7 +2,7 @@
 
 Scans a directory tree for image files that were stored with a `_NNN` conflict suffix (e.g. `2006_03_15_14_30_00_001.jpg`) and checks whether they are rotated duplicates of the corresponding base file (`2006_03_15_14_30_00.jpg`). Rotated duplicates are moved to a `rotated_dups/` folder in the same date directory.
 
-Designed to be run after [find_images](../find_images) has organized a photo library.
+Designed to be run after [find_images](https://github.com/unix-rob/find_images) has organized a photo library.
 
 ## Requirements
 
@@ -44,6 +44,10 @@ go build -o rotate_dup_finder .
 ## Supported image formats
 
 `.jpg` `.jpeg` `.png` `.gif` `.bmp` `.tiff` `.tif` `.webp` `.heic` `.heif` `.raw` `.cr2` `.nef` `.arw`
+
+## Performance
+
+Each candidate file requires two ffmpeg SSIM comparisons (one per rotation). For large libraries, running with `--dry-run` first is recommended to preview matches before committing to moves.
 
 ## Log actions
 
